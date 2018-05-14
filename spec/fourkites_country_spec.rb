@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe "get correct iso state codes " do 
-	# before(:each) do
- #    @max_count = 0
- #  end
+	
 	it "should give correct state iso code for Gauteng" do
 	    expect(FourKites::Country.get_correct_state_code("Gauteng" , "ZA")).to eq ("GT") 
 	end
@@ -61,5 +59,9 @@ end
 describe "check if a given state code is an official one for the given country" do
 	it "should return true if GT is given for Gauteng, South Africa" do
 		expect(FourKites::Country.is_state_valid? "gt" , "ZA").to eq (true)
+	end
+
+	it "should return false if AT is given for Uttar Pradesh , India (non existent state code for a country" do 
+		expect(FourKites::Country.is_state_valid? "AT" , "IN").to eq (false)
 	end
 end
